@@ -9,10 +9,12 @@ import router from './router.js';
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
 import dbconn from './connection.js';
+import dotenv from 'dotenv'
 const app = express();
 
 
 dbconn();
+dotenv.config()
 app.use(cors());
 app.options('*', cors());
 app.use(cookieParser());

@@ -43,6 +43,7 @@ async function getToken(username, email) {
     // console.log(username,email)
     return currentUser.token;
 }
+
 async function getPassword(username, email) {
     let currentUser;
     if (username) currentUser=await User.findOne( {username} )
@@ -56,6 +57,17 @@ async function updatePassword(username, email,password) {
     else if (email ) return User.findOneAndUpdate({ email }, { password })
     else  throw error("cannot Find user");
 }
+
+
+async function updateEmailverificationStatus(email, status) {
+    await User.findOneAndUpdate({ email: email }, { isEmailVerified: status })
+    return
+}
+async function deleteUser(username, email) {
+    if (username ) return User.deleteOne({ username })
+    else if (email ) return User.deleteOne({ email })
+    else  throw error("cannot Find user");
+}
 export {
     createUser,
     findOneUser,
@@ -64,5 +76,7 @@ export {
     emptyToken,
     findOneUserUsingEmailOrUsername,
     getPassword,
-    updatePassword
+    updatePassword,
+    deleteUser,
+    updateEmailverificationStatus
 }
