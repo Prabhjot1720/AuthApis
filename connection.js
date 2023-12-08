@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 
 export default async function dbconn() {
 
-    const url = 'mongodb://127.0.0.1:27017/authapis'
+    // for development purpose I am not putting in .env file
+    const url = 'mongodb+srv://prabhjot:prabhjot@cluster0.qekpctj.mongodb.net/' 
     mongoose.connect(url, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
